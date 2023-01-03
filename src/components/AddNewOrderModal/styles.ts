@@ -8,6 +8,7 @@ export const ModalBox = styled(Box)({
   minWidth: '40vw',
   padding: '3rem 5rem',
   background: 'var(--grey-700)',
+  borderRadius: '1.2rem',
 
   display: 'flex',
   flexDirection: 'column',
@@ -32,6 +33,9 @@ export const ModalInput = styled(TextField)({
   },
   '& .MuiOutlinedInput-input': {
     color: 'var(--white)'
+  },
+  '& .MuiOutlinedInput-input::placeholder': {
+    color: 'var(--white)'
   }
 })
 
@@ -48,12 +52,10 @@ export const ModalDescription = styled(Typography)({
 })
 
 export const AddNewOrderButton = styled(Button)({
-  width: '170px',
-  height: '40px',
   color: 'var(--white)',
   fontWeight: '700',
   fontSize: '0.85rem',
-
+  padding: '0.75rem',
   background: 'var(--purple-600)',
   border: 0,
   borderRadius: '25px',
@@ -61,5 +63,24 @@ export const AddNewOrderButton = styled(Button)({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: '0.50rem'
+  gap: '0.50rem',
+  textAlign: 'center',
+  '&:hover' : {
+    filter: 'brightness(0.9)',
+    background: 'var(--purple-600)'
+  }
+})
+
+
+export const CloseModalButton = styled(Button)({
+  width: '60px',
+  height: '60px',
+  background: 'none',
+  borderRadius: '50%',
+
+  color: 'var(--white)',
+
+  '&:hover': {
+    background: 'rgba(118, 5, 255, 0.2)',
+  }
 })
