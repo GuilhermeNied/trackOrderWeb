@@ -1,5 +1,6 @@
-import { Box, Modal } from "@mui/material";
-import { ModalBox, ModalInput } from "./styles";
+import { Box, Modal, Stack } from "@mui/material";
+import { Plus } from "phosphor-react";
+import { AddNewOrderButton, ModalBox, ModalDescription, ModalInput, ModalTitle } from "./styles";
 
 interface AddNewOrderModalProps {
   open: boolean;
@@ -13,9 +14,24 @@ export function AddNewOrderModal({ handleCloseModal, open }: AddNewOrderModalPro
       onClose={handleCloseModal}
     >
       <ModalBox>
+        <Stack marginBottom='2rem'>
+          <ModalTitle>
+            Add your order
+          </ModalTitle>
+
+          <ModalDescription>
+            Add your order to track how its delivery is going
+          </ModalDescription>
+        </Stack>
         <ModalInput />
         <ModalInput />
-        <ModalInput />
+        <ModalInput multiline rows={3} />
+        <Stack alignItems='flex-end' marginTop='3rem'>
+          <AddNewOrderButton>
+            <Plus size={20} weight='bold' />
+            Add new Order
+          </AddNewOrderButton>
+        </Stack>
       </ModalBox>
     </Modal>
   )

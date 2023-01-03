@@ -16,5 +16,10 @@ export const AddNewOrderButton = styled('button')({
 
   '&:first-child': {
     color: 'var(--purple-600)'
+  },
+
+  '&:hover': {
+    border: '2px solid var(--purple-600)',
+    filter: 'brightness(0.95)'
   }
 })
