@@ -14,7 +14,7 @@ export const AddNewOrderButton = styled('button')({
 
   cursor: 'pointer',
 
-  '&:first-child': {
+  '& .NewOrderIcon': {
     color: 'var(--purple-600)'
   },
 
