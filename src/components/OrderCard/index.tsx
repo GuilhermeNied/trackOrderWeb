@@ -1,30 +1,49 @@
 import { Stack } from "@mui/material";
-import { BoldTypography, NormalTypography, OrderCardContainer } from "./styles";
+import { Trash } from "phosphor-react";
+import { api } from "../../api";
+import {
+  BoldTypography,
+  DeleteOrderButton,
+  NormalTypography,
+  OrderCardContainer
+} from "./styles";
 
-export function OrderCard() {
+interface OrdeerCardProps {
+  trackingCode: string
+  title: string
+  description: string
+}
+
+export function OrderCard({ trackingCode, title, description }: OrdeerCardProps) {
+  async function handleDeleteOrder(trackingCode: string) {
+    await api.delete(`/deleteOrder/${trackingCode}`, { params: { trackingCode } })
+  }
+
   return (
     <OrderCardContainer>
+      <Stack position='absolute' right='0' top='0.2rem' paddingBottom='1rem' >
+        <DeleteOrderButton onClick={() => handleDeleteOrder(trackingCode)}>
+          <Trash size={18} />
+        </DeleteOrderButton>
+      </Stack>
       <Stack gap='1rem'>
         <Stack >
           <BoldTypography>
             Tracking Code:
           </BoldTypography>
           <NormalTypography>
-            Tracking Code
+            {trackingCode}
           </NormalTypography>
         </Stack>
-
 
         <Stack>
           <BoldTypography>
             Title:
           </BoldTypography>
           <NormalTypography>
-            Title
+            {title}
           </NormalTypography>
         </Stack>
-
-
       </Stack>
 
       <Stack>
@@ -32,7 +51,7 @@ export function OrderCard() {
           Description:
         </BoldTypography>
         <NormalTypography sx={{ wordBreak: 'break-word' }}>
-          Description
+          {description}
         </NormalTypography>
       </Stack>
     </OrderCardContainer>

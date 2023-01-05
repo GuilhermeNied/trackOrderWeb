@@ -13,10 +13,6 @@ export const ModalBox = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
-
-  '&:first-child': {
-    marginBottom: '2rem'
-  }
 })
 
 export const ModalInput = styled(TextField)({
