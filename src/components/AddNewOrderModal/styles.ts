@@ -12,7 +12,7 @@ export const ModalBox = styled(Box)({
 
   display: 'flex',
   flexDirection: 'column',
-  gap: '1rem',
+  gap: '1rem'
 })
 
 export const ModalInput = styled(TextField)({
@@ -61,12 +61,11 @@ export const AddNewOrderButton = styled(Button)({
   justifyContent: 'center',
   gap: '0.50rem',
   textAlign: 'center',
-  '&:hover' : {
+  '&:hover': {
     filter: 'brightness(0.9)',
     background: 'var(--purple-600)'
   }
 })
-
 
 export const CloseModalButton = styled(Button)({
   width: '60px',
@@ -77,6 +76,12 @@ export const CloseModalButton = styled(Button)({
   color: 'var(--white)',
 
   '&:hover': {
-    background: 'rgba(118, 5, 255, 0.2)',
+    background: 'rgba(118, 5, 255, 0.2)'
   }
+})
+
+export const FormModal = styled('form')({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '2rem'
 })
