@@ -7,17 +7,18 @@ import { AddNewOrderButton, CloseModalButton, FormModal, ModalBox, ModalDescript
 interface AddNewOrderModalProps {
   open: boolean;
   handleCloseModal: () => void
+  type: ModalType
 }
 
-interface OrderForm {
-  trackingCode: string
-  title: string
-  description: string
+export enum ModalType {
+  CREATE = 'CREATE',
+  EDIT = 'EDIT'
 }
 
-export function AddNewOrderModal({ handleCloseModal, open }: AddNewOrderModalProps) {
+export function AddNewOrderModal({ handleCloseModal, open, type }: AddNewOrderModalProps) {
   const { register, handleSubmit, reset } = useForm()
-  function handleAddNewOrder(data: OrderForm) {
+
+  function handleAddNewOrder(data: any) {
     api.post('/createOrder', {
       trackingCode: data.trackingCode,
       title: data.title,
@@ -47,7 +48,7 @@ export function AddNewOrderModal({ handleCloseModal, open }: AddNewOrderModalPro
             Add your order to track how its delivery is going
           </ModalDescription>
         </Stack>
-        <FormModal onSubmit={handleSubmit(handleAddNewOrder())}>
+        <FormModal onSubmit={handleSubmit(handleAddNewOrder)}>
           <ModalInput {...register("trackingCode")} placeholder="Tracking Code*" />
           <ModalInput {...register("title")} placeholder="Title*" />
           <ModalInput {...register("description")} multiline rows={3} placeholder="Description" />

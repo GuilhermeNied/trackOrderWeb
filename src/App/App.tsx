@@ -2,7 +2,7 @@ import { Stack } from "@mui/material";
 import { Plus } from "phosphor-react";
 import { useEffect, useState } from "react";
 import { api } from "../api";
-import { AddNewOrderModal } from "../components/AddNewOrderModal";
+import { AddNewOrderModal, ModalType } from "../components/AddNewOrderModal";
 import { OrderCard } from "../components/OrderCard";
 import { AddNewOrderButton } from "./styles";
 
@@ -38,7 +38,7 @@ export function App() {
       <AddNewOrderButton onClick={() => setIsModalOpen(true)}>
         <Plus size={45} weight={"bold"} className='NewOrderIcon' />
       </AddNewOrderButton>
-      <AddNewOrderModal open={isModalOpen} handleCloseModal={() => setIsModalOpen(false)} />
+      <AddNewOrderModal type={ModalType.EDIT} open={isModalOpen} handleCloseModal={() => setIsModalOpen(false)} />
     </div>
   )
 }
