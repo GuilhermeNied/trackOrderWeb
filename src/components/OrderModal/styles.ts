@@ -47,7 +47,7 @@ export const ModalDescription = styled(Typography)({
   color: 'var(--grey-500)'
 })
 
-export const AddNewOrderButton = styled(Button)({
+export const OrderModalButton = styled(Button)({
   color: 'var(--white)',
   fontWeight: '700',
   fontSize: '0.85rem',

@@ -1,21 +1,15 @@
 import { Box, Button, FormControl, Modal, Stack } from "@mui/material";
 import { Plus, X } from "phosphor-react";
 import { useForm } from "react-hook-form";
-import { api } from "../../api";
-import { AddNewOrderButton, CloseModalButton, FormModal, ModalBox, ModalDescription, ModalInput, ModalTitle } from "./styles";
+import { api } from "../../../../api";
+import { CloseModalButton, FormModal, ModalBox, ModalDescription, ModalInput, ModalTitle, OrderModalButton } from "../../styles";
 
 interface AddNewOrderModalProps {
   open: boolean;
   handleCloseModal: () => void
-  type: ModalType
 }
 
-export enum ModalType {
-  CREATE = 'CREATE',
-  EDIT = 'EDIT'
-}
-
-export function AddNewOrderModal({ handleCloseModal, open, type }: AddNewOrderModalProps) {
+export function AddNewOrderModal({ handleCloseModal, open, }: AddNewOrderModalProps) {
   const { register, handleSubmit, reset } = useForm()
 
   function handleAddNewOrder(data: any) {
@@ -27,7 +21,6 @@ export function AddNewOrderModal({ handleCloseModal, open, type }: AddNewOrderMo
     handleCloseModal()
     reset()
   }
-
 
   return (
     <Modal
@@ -53,10 +46,10 @@ export function AddNewOrderModal({ handleCloseModal, open, type }: AddNewOrderMo
           <ModalInput {...register("title")} placeholder="Title*" />
           <ModalInput {...register("description")} multiline rows={3} placeholder="Description" />
           <Stack alignItems='flex-end' marginTop='3rem'>
-            <AddNewOrderButton type="submit">
+            <OrderModalButton type="submit">
               <Plus size={18} weight='bold' />
               Add new Order
-            </AddNewOrderButton>
+            </OrderModalButton>
           </Stack>
         </FormModal>
       </ModalBox>
