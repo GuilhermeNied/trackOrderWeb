@@ -1,5 +1,6 @@
-import { Stack } from "@mui/material";
-import { Pencil, Trash } from "phosphor-react";
+import { Button, Menu, MenuItem, Stack } from "@mui/material";
+import { DotsThreeVertical, Pencil, Trash } from "phosphor-react";
+import { useState } from "react";
 import { api } from "../../api";
 import {
   BoldTypography,
@@ -12,23 +13,54 @@ interface OrderCardProps {
   trackingCode: string
   title: string
   description: string
-  handleEditOrder: (trackingCode: string) => void
+  editOrder: (trackingCode: string) => void
 }
 
-export function OrderCard({ trackingCode, title, description, handleEditOrder }: OrderCardProps) {
-  async function handleDeleteOrder(trackingCode: string) {
+export function OrderCard({ trackingCode, title, description, editOrder }: OrderCardProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  async function deleteOrder(trackingCode: string) {
     await api.delete(`/deleteOrder/${trackingCode}`, { params: { trackingCode } })
+  }
+
+  function handleOpenMenu() {
+    setIsMenuOpen(true)
+  }
+
+  function handleCloseMenu() {
+    setIsMenuOpen(false)
+  }
+
+  function handleDeleteOrder() {
+    deleteOrder(trackingCode)
+    handleCloseMenu()
+  }
+
+  function handleEditOrder() {
+    editOrder(trackingCode)
+    handleCloseMenu()
   }
 
   return (
     <OrderCardContainer>
       <Stack position='absolute' right='0' top='0.2rem' paddingBottom='1rem' >
-        <DeleteOrderButton onClick={() => handleDeleteOrder(trackingCode)}>
-          <Trash size={18} />
-        </DeleteOrderButton>
-        <DeleteOrderButton onClick={() => handleEditOrder(trackingCode)}>
-          <Pencil size={18} />
-        </DeleteOrderButton>
+        <Button onClick={handleOpenMenu}>
+          <DotsThreeVertical size={18} />
+        </Button>
+        <Menu open={isMenuOpen} onClose={handleCloseMenu} anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          transformOrigin={{ horizontal: "center", vertical: "top" }}>
+          <MenuItem>
+            <DeleteOrderButton onClick={handleDeleteOrder}>
+              <Trash size={18} />
+            </DeleteOrderButton>
+            Delete
+          </MenuItem>
+          <MenuItem>
+            <DeleteOrderButton onClick={handleEditOrder}>
+              <Pencil size={18} />
+            </DeleteOrderButton>
+            Edit
+          </MenuItem>
+        </Menu>
       </Stack>
       <Stack gap='1rem'>
         <Stack >

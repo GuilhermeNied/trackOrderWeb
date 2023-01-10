@@ -20,6 +20,7 @@ export function App() {
   const [orders, setOrders] = useState<Order[]>([])
   const [order, setOrder] = useState<Order>({ trackingCode: '', title: '', description: '' })
 
+
   function editOrder(trackingCode: string) {
     setIsEditOrderModalOpen(true)
     api.get(`/order/${trackingCode}`, { params: { trackingCode } }).then(res => {
@@ -31,7 +32,16 @@ export function App() {
     })
   }
 
+  function handleOpenNewOrderModal() {
+    setIsNewOrderModalOpen(true)
+  }
+  function handleCloseNewOrderModal() {
+    setIsNewOrderModalOpen(false)
+  }
 
+  function handleCloseEditOrderModal() {
+    setIsEditOrderModalOpen(false)
+  }
 
   useEffect(() => {
     api.get(`/orders`).then((res) => {
@@ -48,22 +58,22 @@ export function App() {
             trackingCode={order.trackingCode}
             title={order.title}
             description={order.description}
-            handleEditOrder={() => editOrder(order.trackingCode)}
+            editOrder={() => editOrder(order.trackingCode)}
           />
         ))}
       </Stack>
 
-      <AddNewOrderButton onClick={() => setIsNewOrderModalOpen(true)}>
+      <AddNewOrderButton onClick={handleOpenNewOrderModal}>
         <Plus size={45} weight={"bold"} className='NewOrderIcon' />
       </AddNewOrderButton>
       <AddNewOrderModal
         open={isNewOrderModalOpen}
-        handleCloseModal={() => setIsNewOrderModalOpen(false)}
+        handleCloseModal={handleCloseNewOrderModal}
       />
 
       <EditOrderModal
         open={isEditOrderModalOpen}
-        handleCloseModal={() => setIsEditOrderModalOpen(false)}
+        handleCloseModal={handleCloseEditOrderModal}
         trackingCode={order.trackingCode}
         title={order.title}
         description={order.description}
