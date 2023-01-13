@@ -1,7 +1,7 @@
 import { Modal, Stack } from "@mui/material";
 import { Pencil, X } from "phosphor-react";
 import { useForm } from "react-hook-form";
-import { api } from "../../../../api";
+import { updateOrder } from "../../../../services/updateOrderService";
 import {
   CloseModalButton,
   FormModal,
@@ -23,18 +23,13 @@ export function EditOrderModal({ open, handleCloseModal, trackingCode, title, de
   const { register, handleSubmit, reset } = useForm()
 
   function handleEditOrder(formData: any) {
-    api({
-      method: 'PUT',
-      url: `/updateOrder/${trackingCode}`,
-      data: {
-        title: formData.title,
-        description: formData.description
-      },
-      params: {
-        trackingCode
-      }
-    })
-
+    const order = {
+      trackingCode: trackingCode,
+      title: formData.title,
+      description: formData.description
+    }
+    updateOrder(order)
+    window.location.reload() //review this
     reset()
     handleCloseModal()
   }

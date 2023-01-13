@@ -1,7 +1,7 @@
-import { Box, Button, FormControl, Modal, Stack } from "@mui/material";
+import { Modal, Stack } from "@mui/material";
 import { Plus, X } from "phosphor-react";
 import { useForm } from "react-hook-form";
-import { api } from "../../../../api";
+import { createOrder } from "../../../../services/createOrderService";
 import { CloseModalButton, FormModal, ModalBox, ModalDescription, ModalInput, ModalTitle, OrderModalButton } from "../../styles";
 
 interface AddNewOrderModalProps {
@@ -13,11 +13,13 @@ export function AddNewOrderModal({ handleCloseModal, open, }: AddNewOrderModalPr
   const { register, handleSubmit, reset } = useForm()
 
   function handleAddNewOrder(data: any) {
-    api.post('/createOrder', {
+    const order = {
       trackingCode: data.trackingCode,
       title: data.title,
-      description: data.description
-    })
+      description: data.description,
+    }
+    createOrder(order)
+
     handleCloseModal()
     reset()
   }

@@ -1,7 +1,7 @@
 import { Button, Menu, MenuItem, Stack } from "@mui/material";
 import { DotsThreeVertical, Pencil, Trash } from "phosphor-react";
 import { useState } from "react";
-import { api } from "../../api";
+import { deleteOrderByTrackingCode } from "../../services/deleteOrderByTrackingCodeService";
 import {
   BoldTypography,
   DeleteOrderButton,
@@ -13,13 +13,13 @@ interface OrderCardProps {
   trackingCode: string
   title: string
   description: string
-  editOrder: (trackingCode: string) => void
+  editOrder: (trackingCode: string) => any
 }
 
 export function OrderCard({ trackingCode, title, description, editOrder }: OrderCardProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   async function deleteOrder(trackingCode: string) {
-    await api.delete(`/deleteOrder/${trackingCode}`, { params: { trackingCode } })
+    deleteOrderByTrackingCode(trackingCode)
   }
 
   function handleOpenMenu() {
@@ -33,6 +33,7 @@ export function OrderCard({ trackingCode, title, description, editOrder }: Order
   function handleDeleteOrder() {
     deleteOrder(trackingCode)
     handleCloseMenu()
+    window.location.reload() // review this
   }
 
   function handleEditOrder() {
@@ -46,16 +47,18 @@ export function OrderCard({ trackingCode, title, description, editOrder }: Order
         <Button onClick={handleOpenMenu}>
           <DotsThreeVertical size={18} />
         </Button>
-        <Menu open={isMenuOpen} onClose={handleCloseMenu} anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        <Menu open={isMenuOpen}
+          onClose={handleCloseMenu}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
           transformOrigin={{ horizontal: "center", vertical: "top" }}>
-          <MenuItem>
-            <DeleteOrderButton onClick={handleDeleteOrder}>
+          <MenuItem onClick={handleDeleteOrder}>
+            <DeleteOrderButton>
               <Trash size={18} />
             </DeleteOrderButton>
             Delete
           </MenuItem>
-          <MenuItem>
-            <DeleteOrderButton onClick={handleEditOrder}>
+          <MenuItem onClick={handleEditOrder}>
+            <DeleteOrderButton >
               <Pencil size={18} />
             </DeleteOrderButton>
             Edit

@@ -1,11 +1,12 @@
 import { Stack } from "@mui/material";
 import { Plus } from "phosphor-react";
 import { useEffect, useState } from "react";
-import { api } from "../api";
 import { AddNewOrderModal } from "../components/OrderModal/components/NewOrderModal";
 import { OrderCard } from "../components/OrderCard";
 import { AddNewOrderButton } from "./styles";
 import { EditOrderModal } from "../components/OrderModal/components/EditOrderModal";
+import { getAllOrders } from "../services/getAllOrdersService";
+import { findOrderByTrackingCode } from "../services/findOrderByTrackingCodeService";
 
 export interface Order {
   trackingCode: string
@@ -23,13 +24,15 @@ export function App() {
 
   function editOrder(trackingCode: string) {
     setIsEditOrderModalOpen(true)
-    api.get(`/order/${trackingCode}`, { params: { trackingCode } }).then(res => {
+    findOrderByTrackingCode(trackingCode).then(data => {
       setOrder({
-        trackingCode: res.data.trackingCode,
-        title: res.data.title,
-        description: res.data.description
+        trackingCode: data.data.trackingCode,
+        title: data.data.title,
+        description: data.data.description
       })
     })
+
+
   }
 
   function handleOpenNewOrderModal() {
@@ -44,10 +47,10 @@ export function App() {
   }
 
   useEffect(() => {
-    api.get(`/orders`).then((res) => {
-      setOrders(res.data)
+    getAllOrders().then(data => {
+      setOrders(data)
     })
-  }, [orders])
+  }, [])
 
   return (
     <div className="App" >
@@ -62,10 +65,10 @@ export function App() {
           />
         ))}
       </Stack>
-
       <AddNewOrderButton onClick={handleOpenNewOrderModal}>
         <Plus size={45} weight={"bold"} className='NewOrderIcon' />
       </AddNewOrderButton>
+
       <AddNewOrderModal
         open={isNewOrderModalOpen}
         handleCloseModal={handleCloseNewOrderModal}
