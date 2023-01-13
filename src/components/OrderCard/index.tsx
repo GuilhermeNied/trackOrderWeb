@@ -5,6 +5,7 @@ import { deleteOrderByTrackingCode } from "../../services/deleteOrderByTrackingC
 import {
   BoldTypography,
   DeleteOrderButton,
+  MenuContainer,
   NormalTypography,
   OrderCardContainer
 } from "./styles";
@@ -43,7 +44,7 @@ export function OrderCard({ trackingCode, title, description, editOrder }: Order
 
   return (
     <OrderCardContainer>
-      <Stack position='absolute' right='0' top='0.2rem' paddingBottom='1rem' >
+      <MenuContainer>
         <Button onClick={handleOpenMenu}>
           <DotsThreeVertical size={18} />
         </Button>
@@ -64,7 +65,7 @@ export function OrderCard({ trackingCode, title, description, editOrder }: Order
             Edit
           </MenuItem>
         </Menu>
-      </Stack>
+      </MenuContainer>
       <Stack gap='1rem'>
         <Stack >
           <BoldTypography>

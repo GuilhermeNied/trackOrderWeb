@@ -1,9 +1,12 @@
 import { Modal, Stack } from "@mui/material";
 import { Pencil, X } from "phosphor-react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { OrdersContext } from "../../../../contexts/OrdersContext";
 import { updateOrder } from "../../../../services/updateOrderService";
 import {
   CloseModalButton,
+  CloseModalButtonContainer,
   FormModal,
   ModalBox,
   ModalInput,
@@ -12,15 +15,18 @@ import {
 } from "../../styles";
 
 interface EditOrderModalProps {
-  open: boolean;
-  handleCloseModal: () => void
   trackingCode: string
   title: string
   description: string
 }
 
-export function EditOrderModal({ open, handleCloseModal, trackingCode, title, description }: EditOrderModalProps) {
+export function EditOrderModal({ trackingCode, title, description }: EditOrderModalProps) {
   const { register, handleSubmit, reset } = useForm()
+  const { isEditOrderModalOpen, closeEditOrderModal } = useContext(OrdersContext)
+
+  function handleCloseEditModal() {
+    closeEditOrderModal(false)
+  }
 
   function handleEditOrder(formData: any) {
     const order = {
@@ -31,20 +37,20 @@ export function EditOrderModal({ open, handleCloseModal, trackingCode, title, de
     updateOrder(order)
     window.location.reload() //review this
     reset()
-    handleCloseModal()
+    handleCloseEditModal()
   }
 
   return (
     <Modal
-      open={open}
-      onClose={handleCloseModal}
+      open={isEditOrderModalOpen}
+      onClose={handleCloseEditModal}
     >
       <ModalBox>
-        <Stack alignItems='flex-end' position='absolute' right='1rem' top='1rem'>
-          <CloseModalButton onClick={handleCloseModal}>
+        <CloseModalButtonContainer>
+          <CloseModalButton onClick={handleCloseEditModal}>
             <X size={28} />
           </CloseModalButton>
-        </Stack>
+        </CloseModalButtonContainer>
         <Stack marginBottom='2rem'>
           <ModalTitle>
             Edit your order
@@ -63,5 +69,4 @@ export function EditOrderModal({ open, handleCloseModal, trackingCode, title, de
       </ModalBox>
     </Modal>
   )
-
 }

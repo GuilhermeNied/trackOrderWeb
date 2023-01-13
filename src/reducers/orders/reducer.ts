@@ -8,39 +8,28 @@ export interface Order {
 
 export function ordersReduer(state: any, action: any) {
   switch (action.type) {
-    case ActionTypes.ADD_NEW_ORDER:
+    case ActionTypes.OPEN_NEW_ORDER_MODAL:
       return {
         ...state,
-        trackingCode: action.trackingCode,
-        title: action.title,
-        description: action.description,
-      };
-    case ActionTypes.UPDATE_ORDER:
-      return {
-        ...state,
-        trackingCode: action.trackingCode,
-        title: action.title,
-        description: action.description,
+        isNewOrderModalOpen: true,
       };
 
-    case ActionTypes.DELETE_ORDER:
+    case ActionTypes.CLOSE_NEW_ORDER_MODAL:
       return {
         ...state,
-        trackingCode: action.trackingCode,
-        title: action.title,
-        description: action.description,
+        isNewOrderModalOpen: false,
       };
 
-    case ActionTypes.OPEN_MODAL:
+    case ActionTypes.OPEN_EDIT_ORDER_MODAL:
       return {
         ...state,
-        isOpen: true,
+        isEditOrderModalOpen: true,
       };
 
-    case ActionTypes.CLOSE_MODAL:
+    case ActionTypes.CLOSE_EDIT_ORDER_MODAL:
       return {
         ...state,
-        isOpen: false,
+        isEditOrderModalOpen: false,
       };
     default:
       return state;

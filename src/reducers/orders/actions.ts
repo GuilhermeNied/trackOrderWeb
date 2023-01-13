@@ -1,48 +1,44 @@
 import { Order } from "./reducer";
 
 export enum ActionTypes {
-  ADD_NEW_ORDER = "ADD_NEW_ORDER",
-  UPDATE_ORDER = "UPDATE_ORDER",
-  DELETE_ORDER = "DELETE_ORDER",
-  OPEN_MODAL = "OPEN_MODAL",
-  CLOSE_MODAL = "CLOSE_MODAL",
+  OPEN_NEW_ORDER_MODAL = "OPEN_NEW_ORDER_MODAL",
+  CLOSE_NEW_ORDER_MODAL = "CLOSE_NEW_ORDER_MODAL",
+  OPEN_EDIT_ORDER_MODAL = "OPEN_EDIT_ORDER_MODAL",
+  CLOSE_EDIT_ORDER_MODAL = "CLOSE_EDIT_ORDER_MODAL",
 }
 
-export function addNewOrderAction(order: Order) {
+export function openNewOrderModalAction(isOpen: boolean) {
   return {
-    type: ActionTypes.ADD_NEW_ORDER,
+    type: ActionTypes.OPEN_NEW_ORDER_MODAL,
     payload: {
-      order,
+      isOpen,
     },
   };
 }
 
-export function updateOrderAction(order: Order) {
+export function closeNewOrderModalAction(isOpen: boolean) {
   return {
-    type: ActionTypes.UPDATE_ORDER,
+    type: ActionTypes.CLOSE_NEW_ORDER_MODAL,
     payload: {
-      order,
+      isOpen,
     },
   };
 }
 
-export function deleteOrderAction(order: Order) {
+export function openEditOrderModalAction(isOpen: boolean) {
   return {
-    type: ActionTypes.DELETE_ORDER,
+    type: ActionTypes.OPEN_EDIT_ORDER_MODAL,
     payload: {
-      order,
+      isOpen,
     },
   };
 }
 
-export function openModalAction() {
+export function closeEditOrderAction(isOpen: boolean) {
   return {
-    type: ActionTypes.OPEN_MODAL,
-  };
-}
-
-export function closeModalAction() {
-  return {
-    type: ActionTypes.CLOSE_MODAL,
+    type: ActionTypes.CLOSE_EDIT_ORDER_MODAL,
+    payload: {
+      isOpen,
+    },
   };
 }

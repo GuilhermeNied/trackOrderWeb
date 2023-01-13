@@ -1,16 +1,17 @@
 import { Modal, Stack } from "@mui/material";
 import { Plus, X } from "phosphor-react";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { OrdersContext } from "../../../../contexts/OrdersContext";
 import { createOrder } from "../../../../services/createOrderService";
-import { CloseModalButton, FormModal, ModalBox, ModalDescription, ModalInput, ModalTitle, OrderModalButton } from "../../styles";
+import { CloseModalButton, CloseModalButtonContainer, FormModal, ModalBox, ModalDescription, ModalInput, ModalTitle, OrderModalButton } from "../../styles";
 
-interface AddNewOrderModalProps {
-  open: boolean;
-  handleCloseModal: () => void
-}
-
-export function AddNewOrderModal({ handleCloseModal, open, }: AddNewOrderModalProps) {
+export function AddNewOrderModal() {
   const { register, handleSubmit, reset } = useForm()
+  const { isNewOrderModalOpen, closeNewOrderModal } = useContext(OrdersContext)
+  function handleCloseNewOrderModal() {
+    closeNewOrderModal(false)
+  }
 
   function handleAddNewOrder(data: any) {
     const order = {
@@ -20,21 +21,21 @@ export function AddNewOrderModal({ handleCloseModal, open, }: AddNewOrderModalPr
     }
     createOrder(order)
 
-    handleCloseModal()
+    handleCloseNewOrderModal()
     reset()
   }
 
   return (
     <Modal
-      open={open}
-      onClose={handleCloseModal}
+      open={isNewOrderModalOpen}
+      onClose={handleCloseNewOrderModal}
     >
       <ModalBox>
-        <Stack alignItems='flex-end' position='absolute' right='1rem' top='1rem'>
-          <CloseModalButton onClick={handleCloseModal}>
+        <CloseModalButtonContainer>
+          <CloseModalButton onClick={handleCloseNewOrderModal}>
             <X size={28} />
           </CloseModalButton>
-        </Stack>
+        </CloseModalButtonContainer>
         <Stack marginBottom='2rem'>
           <ModalTitle>
             Add your order
