@@ -27,7 +27,7 @@ export const BoldTypography = styled(DefaultTypography)({
 });
 
 export const DeleteOrderButton = styled(Button)({
-  color: "var(--red)",
+  color: "var(--purple-600)",
   width: "40px",
   height: "40px",
   borderRadius: "50%",
@@ -38,4 +38,16 @@ export const MenuContainer = styled(Stack)({
   right: "0",
   top: "0.2rem",
   paddingBottom: "1rem",
+
+  "& .MuiPaper-root": {
+    background: "var(--grey-700)",
+  },
+});
+
+export const OpenMenuButton = styled(Button)({
+  color: "var(--purple-600)",
+  background: "none",
+  "&:hover": {
+    filter: "brightness(0.9)",
+  },
 });

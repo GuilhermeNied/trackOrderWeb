@@ -7,6 +7,7 @@ import {
   DeleteOrderButton,
   MenuContainer,
   NormalTypography,
+  OpenMenuButton,
   OrderCardContainer
 } from "./styles";
 
@@ -19,11 +20,13 @@ interface OrderCardProps {
 
 export function OrderCard({ trackingCode, title, description, editOrder }: OrderCardProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [anchorEl, setAnchorEl] = useState(null)
   async function deleteOrder(trackingCode: string) {
     deleteOrderByTrackingCode(trackingCode)
   }
 
-  function handleOpenMenu() {
+  function handleOpenMenu(event: any) {
+    setAnchorEl(event.currentTarget)
     setIsMenuOpen(true)
   }
 
@@ -45,20 +48,29 @@ export function OrderCard({ trackingCode, title, description, editOrder }: Order
   return (
     <OrderCardContainer>
       <MenuContainer>
-        <Button onClick={handleOpenMenu}>
-          <DotsThreeVertical size={18} />
-        </Button>
-        <Menu open={isMenuOpen}
+        <OpenMenuButton onClick={handleOpenMenu}>
+          <DotsThreeVertical size={20} weight='bold' />
+        </OpenMenuButton>
+        <Menu
+          open={isMenuOpen}
+          anchorEl={anchorEl}
           onClose={handleCloseMenu}
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
-          transformOrigin={{ horizontal: "center", vertical: "top" }}>
-          <MenuItem onClick={handleDeleteOrder}>
+          transformOrigin={{ horizontal: "center", vertical: "top" }}
+          PaperProps={{
+            sx: {
+              background: 'var(--grey-500)',
+              borderRadius: '1.5rem'
+            }
+          }}
+        >
+          <MenuItem onClick={handleDeleteOrder} sx={{ color: 'var(--white)', fontWeight: '700' }}>
             <DeleteOrderButton>
               <Trash size={18} />
             </DeleteOrderButton>
             Delete
           </MenuItem>
-          <MenuItem onClick={handleEditOrder}>
+          <MenuItem onClick={handleEditOrder} sx={{ color: 'var(--white)', fontWeight: '700' }}>
             <DeleteOrderButton >
               <Pencil size={18} />
             </DeleteOrderButton>
