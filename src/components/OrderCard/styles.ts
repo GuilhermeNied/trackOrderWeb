@@ -2,8 +2,8 @@ import { Button, Stack, styled, Typography } from "@mui/material";
 
 export const OrderCardContainer = styled(Stack)({
   position: "relative",
-  width: "70rem",
-  minWidth: "10rem",
+  width: "30rem",
+  minWidth: "50%",
   background: "var(--grey-500)",
   padding: "2.5rem",
   borderRadius: "1.5rem",
