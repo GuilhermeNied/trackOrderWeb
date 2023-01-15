@@ -8,7 +8,7 @@ import { OrdersContext } from "../../contexts/OrdersContext";
 import { Order } from "../../reducers/orders/reducer";
 import { findOrderByTrackingCode } from "../../services/findOrderByTrackingCodeService";
 import { getAllOrders } from "../../services/getAllOrdersService";
-import { AddNewOrderButton, OrdersContainer } from "./styles";
+import { AddNewOrderButton, HomeContainer, OrdersContainer } from "./styles";
 
 
 export function Home() {
@@ -40,7 +40,7 @@ export function Home() {
   }, [])
 
   return (
-    <Stack>
+    <HomeContainer>
       <OrdersContainer>
         {orders.map((order) => (
           <OrderCard
@@ -55,14 +55,12 @@ export function Home() {
       <AddNewOrderButton onClick={handleOpenNewOrderModal}>
         <Plus size={45} weight={"bold"} className='NewOrderIcon' />
       </AddNewOrderButton>
-
       <AddNewOrderModal />
-
       <EditOrderModal
         trackingCode={order.trackingCode}
         title={order.title}
         description={order.description}
       />
-    </Stack>
+    </HomeContainer>
   )
 }

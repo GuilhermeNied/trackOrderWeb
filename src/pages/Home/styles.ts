@@ -6,7 +6,7 @@ export const AddNewOrderButton = styled("button")({
   height: "75px",
   position: "absolute",
   right: "2rem",
-  bottom: "2rem",
+  bottom: "1.2rem",
 
   background: "var(--grey-500)",
   border: 0,
@@ -30,4 +30,17 @@ export const OrdersContainer = styled(Stack)({
   marginTop: "5rem",
   flex: "1",
   gap: "2rem",
+});
+
+export const HomeContainer = styled(Stack)({
+  overflowY: "auto",
+  height: "100vh",
+  "&::-webkit-scrollbar": {
+    background: "var(--grey-700)",
+    width: "0.6rem",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    background: "var(--grey-500)",
+    borderRadius: "3rem",
+  },
 });
