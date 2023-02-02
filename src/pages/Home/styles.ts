@@ -23,6 +23,16 @@ export const AddNewOrderButton = styled("button")({
     border: "2px solid var(--purple-600)",
     filter: "brightness(0.95)",
   },
+
+  "@media (max-width: 700px)": {
+    width: "100%",
+    height: "3rem",
+    bottom: 0,
+    right: 0,
+
+    textAlign: "center",
+    borderRadius: 0,
+  },
 });
 
 export const OrdersContainer = styled(Stack)({
