@@ -14,6 +14,17 @@ export const ModalBox = styled(Box)({
   display: "flex",
   flexDirection: "column",
   gap: "1rem",
+
+  "@media (max-width: 700px)": {
+    flex: 1,
+    width: "100%",
+    bottom: 0,
+    right: 0,
+    height: "100vh",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 0,
+  },
 });
 
 export const ModalInput = styled(TextField)({
@@ -65,6 +76,10 @@ export const OrderModalButton = styled(Button)({
   "&:hover": {
     filter: "brightness(0.9)",
     background: "var(--purple-600)",
+  },
+
+  "@media (max-width: 700px)": {
+    width: "15rem",
   },
 });
 

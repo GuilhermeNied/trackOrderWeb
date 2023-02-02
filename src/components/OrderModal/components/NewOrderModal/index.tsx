@@ -20,6 +20,7 @@ export function AddNewOrderModal() {
       description: data.description,
     }
     createOrder(order)
+    window.location.reload()
 
     handleCloseNewOrderModal()
     reset()

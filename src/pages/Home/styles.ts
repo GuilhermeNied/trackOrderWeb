@@ -45,6 +45,7 @@ export const OrdersContainer = styled(Stack)({
 export const HomeContainer = styled(Stack)({
   overflowY: "auto",
   height: "100vh",
+  paddingBottom: "5rem",
   "&::-webkit-scrollbar": {
     background: "var(--gray-700)",
     width: "0.6rem",
@@ -52,5 +53,17 @@ export const HomeContainer = styled(Stack)({
   "&::-webkit-scrollbar-thumb": {
     background: "var(--gray-500)",
     borderRadius: "3rem",
+  },
+
+  "@media (max-width: 700px)": {
+    paddingBottom: "8rem",
+    "&::-webkit-scrollbar": {
+      background: "transparent",
+      width: "0",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: "transparent",
+      borderRadius: "0",
+    },
   },
 });
