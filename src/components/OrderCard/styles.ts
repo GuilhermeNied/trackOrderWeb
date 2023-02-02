@@ -10,6 +10,11 @@ export const OrderCardContainer = styled(Stack)({
   flexDirection: "row",
   justifyContent: "space-between",
   gap: "5rem",
+
+  "@media (max-width: 700px)": {
+    width: "100%",
+    borderRadius: 0,
+  },
 });
 
 const DefaultTypography = styled(Typography)({
