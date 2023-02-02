@@ -4,7 +4,7 @@ export const OrderCardContainer = styled(Stack)({
   position: "relative",
   width: "30rem",
   minWidth: "50%",
-  background: "var(--grey-500)",
+  background: "var(--gray-500)",
   padding: "2.5rem",
   borderRadius: "1.5rem",
   flexDirection: "row",
@@ -19,7 +19,7 @@ const DefaultTypography = styled(Typography)({
 
 export const NormalTypography = styled(DefaultTypography)({
   fontWeight: "500",
-  color: "var(--grey-800)",
+  color: "var(--gray-800)",
 });
 
 export const BoldTypography = styled(DefaultTypography)({
@@ -40,7 +40,7 @@ export const MenuContainer = styled(Stack)({
   paddingBottom: "1rem",
 
   "& .MuiPaper-root": {
-    background: "var(--grey-700)",
+    background: "var(--gray-700)",
   },
 });
 

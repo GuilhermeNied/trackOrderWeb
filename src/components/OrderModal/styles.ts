@@ -8,7 +8,7 @@ export const ModalBox = styled(Box)({
   transform: "translate(-50%, -50%)",
   minWidth: "40vw",
   padding: "3rem 5rem",
-  background: "var(--grey-700)",
+  background: "var(--gray-700)",
   borderRadius: "1.2rem",
 
   display: "flex",
@@ -17,7 +17,7 @@ export const ModalBox = styled(Box)({
 });
 
 export const ModalInput = styled(TextField)({
-  border: "1.5px solid var(--grey-800)",
+  border: "1.5px solid var(--gray-800)",
   borderRadius: "0.3rem",
   color: "var(--white)",
 
@@ -45,7 +45,7 @@ export const ModalTitle = styled(Typography)({
 export const ModalDescription = styled(Typography)({
   fontSize: "1.3rem",
   fontWeight: "500",
-  color: "var(--grey-500)",
+  color: "var(--gray-500)",
 });
 
 export const OrderModalButton = styled(Button)({

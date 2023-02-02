@@ -59,7 +59,7 @@ export function OrderCard({ trackingCode, title, description, editOrder }: Order
           transformOrigin={{ horizontal: "center", vertical: "top" }}
           PaperProps={{
             sx: {
-              background: 'var(--grey-500)',
+              background: 'var(--gray-500)',
               borderRadius: '1.5rem'
             }
           }}

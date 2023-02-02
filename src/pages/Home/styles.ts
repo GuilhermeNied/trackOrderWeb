@@ -8,7 +8,7 @@ export const AddNewOrderButton = styled("button")({
   right: "2rem",
   bottom: "1.2rem",
 
-  background: "var(--grey-500)",
+  background: "var(--gray-500)",
   border: 0,
   borderRadius: "50%",
   // boxShadow: '4px 10px 124px -2px rgba(0,0,0,1)',
@@ -36,11 +36,11 @@ export const HomeContainer = styled(Stack)({
   overflowY: "auto",
   height: "100vh",
   "&::-webkit-scrollbar": {
-    background: "var(--grey-700)",
+    background: "var(--gray-700)",
     width: "0.6rem",
   },
   "&::-webkit-scrollbar-thumb": {
-    background: "var(--grey-500)",
+    background: "var(--gray-500)",
     borderRadius: "3rem",
   },
 });
