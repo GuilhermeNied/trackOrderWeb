@@ -11,8 +11,8 @@ import { ordersReduer } from "../reducers/orders/reducer";
 interface OrdersContextType {
   openNewOrderModal: (isOpen: boolean) => void;
   closeNewOrderModal: (isOpen: boolean) => void;
-  openEditOrderModal: (openis: boolean) => void;
-  closeEditOrderModal: (openis: boolean) => void;
+  openEditOrderModal: (isOpen: boolean) => void;
+  closeEditOrderModal: (isOpen: boolean) => void;
   isNewOrderModalOpen: boolean;
   isEditOrderModalOpen: boolean;
   trackingCode: string;
