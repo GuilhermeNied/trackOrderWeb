@@ -1,6 +1,7 @@
 import { api } from "./api";
 
 export async function getAllOrders() {
-  const data = await api.get("/orders").then((res) => res.data);
+  const response = await api.get("/orders");
+  const data = response.data
   return data;
 }

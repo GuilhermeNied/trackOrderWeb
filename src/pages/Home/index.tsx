@@ -5,6 +5,7 @@ import { OrderCard } from "../../components/OrderCard";
 import { EditOrderModal } from "../../components/OrderModal/components/EditOrderModal";
 import { AddNewOrderModal } from "../../components/OrderModal/components/NewOrderModal";
 import { OrdersContext } from "../../contexts/OrdersContext";
+import { useOrders } from "../../hooks/useOrders";
 import { Order } from "../../reducers/orders/reducer";
 import { findOrderByTrackingCode } from "../../services/findOrderByTrackingCodeService";
 import { getAllOrders } from "../../services/getAllOrdersService";
@@ -13,9 +14,8 @@ import { AddNewOrderButton, HomeContainer, OrdersContainer } from "./styles";
 
 export function Home() {
   const { openNewOrderModal, openEditOrderModal } = useContext(OrdersContext)
-
-  const [orders, setOrders] = useState<Order[]>([])
   const [order, setOrder] = useState<Order>({ trackingCode: '', title: '', description: '' })
+  const { orders } = useOrders()
 
 
   function editOrder(trackingCode: string) {
@@ -33,11 +33,7 @@ export function Home() {
     openNewOrderModal(true)
   }
 
-  useEffect(() => {
-    getAllOrders().then(data => {
-      setOrders(data)
-    })
-  }, [])
+
 
   return (
     <HomeContainer>
