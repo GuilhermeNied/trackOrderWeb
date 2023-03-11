@@ -1,4 +1,3 @@
-import { Order } from "../App";
 import { api } from "./api";
 
 export async function findOrderByTrackingCode(trackingCode: string) {
